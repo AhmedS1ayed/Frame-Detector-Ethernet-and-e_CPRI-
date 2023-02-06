@@ -6,6 +6,7 @@ using namespace std;
 
 class Basic_Frame
 {
+
     string Frame;
     string preamble;
     string sfd;
@@ -20,6 +21,7 @@ class Basic_Frame
     //Full Frame Constructor
     Basic_Frame(string input)
     {
+        //TODO: how to handle the input strings
         Frame = input;
         process_Frame();
     }
@@ -93,6 +95,7 @@ class Basic_Frame
     }
     string process_preamble()
     {
+
         return "00";
     }
     string process_sfd()
@@ -101,6 +104,7 @@ class Basic_Frame
     }
     string process_source()
     {
+        
         return "00";
     }
     string process_dest()
@@ -115,8 +119,10 @@ class Basic_Frame
     {
         return "00";
     }
+
 //----------------------------------------------------
     //Printers :
+    // FIXME: May in another class 
     void Print()
     {
         Print_preamble();

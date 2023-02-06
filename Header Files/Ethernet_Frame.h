@@ -10,6 +10,7 @@ class Ethernet_Frame : public Basic_Frame
     {
 
     };
+    
     Ethernet_Frame(string p , string sf , string s , string d , string t , string cr) : Basic_Frame(p ,sf ,s , d , t ,cr)
     {
 
