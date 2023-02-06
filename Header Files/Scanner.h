@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-
+#include <vector>
 using namespace std;
 
 /*
@@ -14,7 +14,7 @@ class Scanner
 {
     private: 
     string inputFile;
-    string inputData;
+    vector<string> inputData;
 
     public:
     Scanner(string inputFile)
@@ -22,19 +22,19 @@ class Scanner
         this->inputFile = inputFile;
     }
 
-    string scanFile()
+    vector<string> scanFile()
     {
+        string line;
         ifstream file;
         file.open(this->inputFile);
-        string line;
         if(!file.is_open())
         {
             cout<<"Error opening file"<<endl;
-            return "";
+          //  exit(1);
         }
         while(getline(file,line))
         {
-            inputData += line;
+            inputData.push_back(line);
         }
         file.close();
         return inputData;
