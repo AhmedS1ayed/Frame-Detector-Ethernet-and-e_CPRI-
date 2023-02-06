@@ -1,2 +1,2 @@
 # Frame-Detector-Ethernet-and-e_CPRI-
-Frame Detector (Ethernet &amp; e-CPRI)  -- SIMENS Diploma Assignment
+This Project is concerned with determining the type and details of the frame.
