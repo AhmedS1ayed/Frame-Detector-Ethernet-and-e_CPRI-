@@ -28,7 +28,7 @@ class Analyser
         {
             packet = inputData[i];
             Basic_Frame frame(packet);
-            cout <<"Packet #"<<i+1<<": ";
+            cout <<"Packet #"<<i<<": " << endl;
             cout << packet << endl;
             frame.Print();
         }

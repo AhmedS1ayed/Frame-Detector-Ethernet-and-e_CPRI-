@@ -1,5 +1,7 @@
 {
   "files.associations": {
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "basic_frame_configration": "cpp",
+    "iostream": "cpp"
   }
 }
