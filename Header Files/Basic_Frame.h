@@ -19,7 +19,7 @@ class Basic_Frame
     //Full Frame Constructor
     Basic_Frame(string input)
     {
-        Frame = input;
+        this->Frame = input;
         process_Frame();
     }
     //pre-determined frame constructor
@@ -99,6 +99,7 @@ class Basic_Frame
         Print_dst();
         Print_src();
         Print_type();
+        cout << "*******************************************************************************************************" << endl;
     }
     void Print_src()
     {

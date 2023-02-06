@@ -23,11 +23,13 @@ class Analyser
         //get the input data
         Scanner scanner(inputFile);
         this->inputData = scanner.scanFile();
-        //loop through the input data
+        //loop through the input data and process each packet
         for (size_t i = 0; i < inputData.size(); i++)
         {
             packet = inputData[i];
             Basic_Frame frame(packet);
+            cout <<"Packet #"<<i+1<<": ";
+            cout << packet << endl;
             frame.Print();
         }
 
