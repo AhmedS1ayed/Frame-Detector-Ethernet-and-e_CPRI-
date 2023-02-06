@@ -3,12 +3,17 @@
 #include"Basic_Frame.h"
 class ecpri_Frame : public Basic_Frame
 {
-    ecpri_Frame(Basic_Frame frame)
+    
+    public:
+    //Default Constructor
+    ecpri_Frame()
     {
 
     };
-    ecpri_Frame(string p , string sf , string s , string d , string t , string cr) : Basic_Frame(p ,sf ,s , d , t ,cr)
+    //Full Frame Constructor
+    ecpri_Frame(string s , string d , string t , string cr) : Basic_Frame(s , d , t ,cr)
     {
 
     };
+
 };

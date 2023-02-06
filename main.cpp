@@ -4,7 +4,7 @@
 
 int main()
 {
-    Basic_Frame a("0","0","0","0","0","0");
+    Basic_Frame a("0","0","0","0");
     a.Print();
     return 0;
 }
