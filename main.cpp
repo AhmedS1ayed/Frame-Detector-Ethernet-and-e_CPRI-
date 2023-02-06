@@ -18,7 +18,10 @@ Basic_Frame* Frame_type_object(Basic_Frame* input)
 
 int main()
 {
-    Basic_Frame a("0","0","0","0","0","0");
-    a.Print();
+    Basic_Frame* a = new Basic_Frame("ECCD655507D9","011B19000000","88F7","0B35F9E9");
+
+    //a = Frame_type_object(a);
+    a->Print();
+    delete(a);
     return 0;
 }
