@@ -6,13 +6,28 @@ class Ethernet_Frame : public Basic_Frame
     string data;
     
     public :
-    Ethernet_Frame(Basic_Frame frame)
+    Ethernet_Frame()
     {
 
     };
-    Ethernet_Frame(string p , string sf , string s , string d , string t , string cr) : Basic_Frame(p ,sf ,s , d , t ,cr)
+    Ethernet_Frame(string s , string d , string t , string cr) : Basic_Frame(s , d , t ,cr)
     {
-
+        
     };
-
+    void set_data(string input)
+    {
+        data = input;
+    }
+    string get_data()
+    {
+        return data;
+    }
+    void Print()
+    {
+        Print_crc();
+        Print_dst();
+        Print_src();
+        Print_type();
+        cout<<"Type is Ethernet \n";
+    }
 };

@@ -1,5 +1,4 @@
 #pragma once
-
 #include<iostream>
 #include<string>
 using namespace std;
@@ -7,8 +6,6 @@ using namespace std;
 class Basic_Frame
 {
     string Frame;
-    string preamble;
-    string sfd;
     string source;
     string dest;
     string type;
@@ -21,32 +18,15 @@ class Basic_Frame
     Basic_Frame(string input)
     {
         Frame = input;
-        process_Frame();
     }
     //pre-determined frame constructor
-    Basic_Frame(string p ,string sf ,string s , string d , string t ,string cr) : preamble(p) , sfd(sf) , source(s) , dest(d) , type(t) , crc(cr)
+    Basic_Frame(string s , string d , string t ,string cr) : source(s) , dest(d) , type(t) , crc(cr)
     {
 
     }
 
 //----------------------------------------------------
     // Setters and Getters :
-    void set_preamble(string input)
-    {
-        preamble=input;
-    }
-    string get_preamble()
-    {
-        return preamble;
-    }
-    void set_sfd(string input)
-    {
-        sfd=input;
-    }
-    string get_sfd()
-    {
-        return sfd;
-    }
     void set_source(string input)
     {
         source=input;
@@ -71,7 +51,7 @@ class Basic_Frame
     {
         return type;
     }
-    void set_crc(string input)
+    virtual void set_crc(string input)
     {
         crc=input;
     }
@@ -82,22 +62,12 @@ class Basic_Frame
 
 //----------------------------------------------------
     //Processing The Frame :
-    void process_Frame()
+    virtual void process_Frame()
     {
-        preamble = process_preamble();
-        sfd = process_sfd();
         source = process_source();
         dest = process_dest();
         type = process_type();
         crc = process_crc();
-    }
-    string process_preamble()
-    {
-        return "00";
-    }
-    string process_sfd()
-    {
-        return "00";
     }
     string process_source()
     {
@@ -117,37 +87,36 @@ class Basic_Frame
     }
 //----------------------------------------------------
     //Printers :
-    void Print()
+    virtual void Print()
     {
-        Print_preamble();
-        Print_sfd();
-        Print_src();
-        Print_dst();
-        Print_type();
         Print_crc();
-    }
-    void Print_preamble()
-    {
-        cout<<preamble + "\n";
-    }
-    void Print_sfd()
-    {
-        cout<<sfd + "\n";
+        Print_dst();
+        Print_src();
+        Print_type();
     }
     void Print_src()
     {
-        cout<<source + "\n";
+        cout<<"Source Address: "<< source + "\n";
     }
     void Print_dst()
     {
-        cout<<dest + "\n";
+        cout<<"Destination Address: "<< dest + "\n";
     }
     void Print_type()
     {
-        cout<<type + "\n";
+        cout<<"Type: "<< type + "\n";
     }
     void Print_crc()
     {
-        cout<<crc + "\n";
+        cout<<"CRC: "<<crc + "\n";
     }
+// Frame_type returns a pointer frame with its type
+    string Frame_type()
+    {
+        if(type=="AEFE")
+            return "e-CPRI";
+        else
+            return "Ethernet";
+    }
+
 };
