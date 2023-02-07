@@ -21,6 +21,7 @@ class Analyser
 
     void analyse(string inputFile){
         //get the input data
+        //FIXME: this should be done in the constructor
         Scanner scanner(inputFile);
         this->inputData = scanner.scanFile();
         //loop through the input data and process each packet
