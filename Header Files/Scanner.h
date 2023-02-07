@@ -17,16 +17,16 @@ class Scanner
     
 
     public:
-    Scanner(string inputFile)
+    Scanner()
     {
-        this->inputFile = inputFile;
     }
 
-    vector<string> scanFile()
+    vector<string> scanFile(string inputFile)
     {
         string line;
         ifstream file;
         vector<string> inputData;
+        this->inputFile = inputFile;
         file.open(this->inputFile);
         if(!file.is_open())
         {

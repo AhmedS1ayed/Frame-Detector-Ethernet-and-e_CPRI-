@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 #include "Scanner.h"
-#include "Basic_Frame.h"
+#include "BasicFrame.h"
 using namespace std;
 
 
@@ -13,6 +13,7 @@ class Analyser
     private:
     vector<string> inputData;
     string packet;
+    Scanner scanner;
 
     public:
     Analyser()
@@ -21,19 +22,21 @@ class Analyser
 
     void analyse(string inputFile){
         //get the input data
-        //FIXME: this should be done in the constructor
-        Scanner scanner(inputFile);
-        this->inputData = scanner.scanFile();
+        this->inputData = scanner.scanFile(inputFile);
         //loop through the input data and process each packet
         for (size_t i = 0; i < inputData.size(); i++)
         {
             packet = inputData[i];
-            Basic_Frame* frame = new Basic_Frame(packet);
-            frame = Frame_type_object(frame);
+            BasicFrame* frame = new BasicFrame(packet);
+            //call thq process_Frame function to process the packet
+            (*frame).processFrame();
+            //check the frame type if it is e-CPRI or Ethernet and do ecpri processing
+            frame = checkFrameType(frame);
             
             if(frame == nullptr) 
                 return;
-            
+
+            //print the frame
             cout <<"Packet #"<<i<<": " << endl;
             cout << packet << endl;
             frame->Print();
@@ -42,14 +45,16 @@ class Analyser
         }
     }
 
-    Basic_Frame* Frame_type_object(Basic_Frame* input)
+    BasicFrame* checkFrameType(BasicFrame* input)
     {
-        if(input->Frame_type() == "e-CPRI")
+        string temp = input->getFrameType();
+        if(temp == "e-CPRI")
         {
-            ecpri_Frame* new_frame = new ecpri_Frame(input->get_Frame(),input->get_source(),input->get_destination(),input->get_type(),input->get_crc());
-            return new_frame;
+            EcpriFrame* newframe = new EcpriFrame(input->getFrame(),input->getSource(),input->getDestination(),input->getType(),input->getCRC());
+            (*newframe).processFrameFull();
+            return newframe;
         }
-        else if(input->Frame_type() == "Ethernet")
+        else if(temp == "Ethernet")
         {
             return input;
         }
