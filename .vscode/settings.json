@@ -2,6 +2,7 @@
   "files.associations": {
     "ostream": "cpp",
     "basic_frame_configration": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "iosfwd": "cpp"
   }
 }

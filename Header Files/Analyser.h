@@ -5,6 +5,7 @@
 #include <fstream>
 #include "Scanner.h"
 #include "BasicFrame.h"
+#include "Emitter.h"
 using namespace std;
 
 
@@ -12,12 +13,16 @@ class Analyser
 {
     private:
     vector<string> inputData;
+    string outputData;
     string packet;
     Scanner scanner;
+    Emitter emitter;
 
+    //TODO: add destructor !!
     public:
     Analyser()
     {
+        outputData = "";
     }
 
     void analyse(string inputFile){
@@ -37,12 +42,23 @@ class Analyser
                 return;
 
             //print the frame
-            cout <<"Packet #"<<i<<": " << endl;
-            cout << packet << endl;
-            frame->Print();
+           // cout <<  "Packet #" << i << ": " << packet << endl;
+            outputData += "Packet #" + to_string(i) + ": \n" + packet + "\n";
+            //emitter.emit("Packet #"+to_string(i)+": ");
+           // cout << frame->Print() << endl;
+            //emitter.emit(packet);
+            outputData += frame->Print() + "\n";
+            //this->outputData[i] = frame->Print();
+            //emit the output data
+            //emitter.emit(outputData[i]);
             delete(frame);
-            cout << "*******************************************************************************************************************************************************" << endl;
+            //cout << "*******************************************************************************************************************************************************" << endl;
+            //emitter.emit("*******************************************************************************************************************************************************");
+            outputData += "*******************************************************************************************************************************************************\n";
         }
+            cout << outputData << endl;
+            emitter.emit(outputData);
+
     }
 
     BasicFrame* checkFrameType(BasicFrame* input)

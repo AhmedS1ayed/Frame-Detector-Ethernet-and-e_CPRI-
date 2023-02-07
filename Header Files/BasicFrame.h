@@ -116,28 +116,30 @@ class BasicFrame
 
 //----------------------------------------------------
     //Printers 
-    virtual void Print()
+    virtual string Print()
     {
-        Print_crc();
-        Print_dst();
-        Print_src();
-        Print_type();
+        string temp="";
+        temp += Print_crc();
+        temp += Print_dst();
+        temp += Print_src();
+        temp += Print_type();
+        return temp;
         }
-    void Print_src()
+    string Print_src()
     {
-        cout<<"Source Address: "<< source + "\n";
+        return "Source Address: " + source + "\n";
     }
-    void Print_dst()
+    string Print_dst()
     {
-        cout<<"Destination Address: "<< dest + "\n";
+        return "Destination Address: " + dest + "\n";
     }
-    void Print_type()
+    string Print_type()
     {
-        cout<<"Type: "<< type + "\n";
+        return "Type: " + type + "\n";
     }
-    void Print_crc()
+    string Print_crc()
     {
-        cout<<"CRC: "<<crc + "\n";
+        return "CRC: " + crc + "\n";
     }
 
 

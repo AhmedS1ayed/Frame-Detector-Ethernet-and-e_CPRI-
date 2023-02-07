@@ -82,41 +82,43 @@ class EcpriFrame : public BasicFrame
     }
 //----------------------------------------------------
     //Printers :
-    virtual void Print()
+    virtual string Print()
     {
-        Print_crc();
-        Print_concatination_indicator();
-        Print_dst();
-        Print_message_type();
-        Print_payload_size();
-        Print_protocol_version();
-        Print_rtc_id();
-        Print_seq_id();
-        Print_src();
-        Print_type();    
+        string temp;
+        temp += Print_crc();
+        temp += Print_concatination_indicator();
+        temp += Print_dst();
+        temp += Print_message_type();
+        temp += Print_payload_size();
+        temp += Print_protocol_version();
+        temp += Print_rtc_id();
+        temp += Print_seq_id();
+        temp += Print_src();
+        temp += Print_type();    
+        return temp;
     }
-    void Print_protocol_version()
+    string Print_protocol_version()
     {
-        cout<<"Protocol Version: "<< protocolVersion + "\n";
+        return "Protocol Version: " + protocolVersion + "\n";
     }
-    void Print_concatination_indicator()
+    string Print_concatination_indicator()
     {
-        cout<<"Concatenation Indicator: "<< concatinationBit + "\n";
+        return "Concatenation Indicator: " + concatinationBit + "\n";
     }
-    void Print_message_type()
+    string Print_message_type()
     {
-        cout<<"Message Type: "<< messageType + "\n";
+        return "Message Type: " + messageType + "\n";
     }
-    void Print_payload_size()
+    string Print_payload_size()
     {
-        cout<<"Payload Size: "<< payloadSize + "\n";
+        return "Payload Size: " + payloadSize + "\n";
     }
-    void Print_rtc_id()
+    string Print_rtc_id()
     {
-        cout<<"RTC ID: "<< rtcId + "\n";
+        return "RTC ID: " + rtcId + "\n";
     }
-    void Print_seq_id()
+    string Print_seq_id()
     {
-        cout<<"Sequence ID: "<< seqId + "\n";
+        return "Sequence ID: " + seqId + "\n";
     }
 };
