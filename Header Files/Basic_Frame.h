@@ -18,15 +18,24 @@ class Basic_Frame
     Basic_Frame(string input)
     {
         Frame = input;
+        process_Frame();
     }
     //pre-determined frame constructor
-    Basic_Frame(string s , string d , string t ,string cr) : source(s) , dest(d) , type(t) , crc(cr)
+    Basic_Frame(string fr ,string s , string d , string t ,string cr) : Frame(fr),source(s) , dest(d) , type(t) , crc(cr)
     {
 
     }
 
 //----------------------------------------------------
     // Setters and Getters :
+    void set_Frame(string input)
+    {
+        Frame=input;
+    }
+    string get_Frame()
+    {
+        return Frame;
+    }
     void set_source(string input)
     {
         source=input;
@@ -93,6 +102,7 @@ class Basic_Frame
         Print_dst();
         Print_src();
         Print_type();
+        cout << "*******************************************************************************************************************************************************" << endl;
     }
     void Print_src()
     {
