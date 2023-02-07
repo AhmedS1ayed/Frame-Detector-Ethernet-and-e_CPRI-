@@ -10,6 +10,7 @@ using namespace std;
 /*
     Scanner class to read the input file and return the data as a string
 */
+// FIXME: may the we add a destructor to this class and close the file in it 
 class Scanner 
 {
     private: 

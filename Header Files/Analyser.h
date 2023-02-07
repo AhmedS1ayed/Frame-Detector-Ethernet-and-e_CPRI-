@@ -41,6 +41,8 @@ class Analyser
             if(frame == nullptr) 
                 return;
 
+
+            // FIXME: Refactor this code to be more readable
             //print the frame
            // cout <<  "Packet #" << i << ": " << packet << endl;
             outputData += "Packet #" + to_string(i) + ": \n" + packet + "\n";
