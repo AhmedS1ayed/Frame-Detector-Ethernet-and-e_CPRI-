@@ -36,8 +36,9 @@ class Analyser
             cout <<"Packet #"<<i<<": " << endl;
             cout << packet << endl;
             frame->Print();
+            delete(frame);
+            cout << "*******************************************************************************************************************************************************" << endl;
         }
-
     }
 
     Basic_Frame* Frame_type_object(Basic_Frame* input)

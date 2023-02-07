@@ -50,6 +50,7 @@ class ecpri_Frame : public Basic_Frame
     void process_concatination_byte()
     {
         concatination_byte = get_Frame().substr(CONCATENATION_INDICATOR_BYTE_INDEX,CONCATENATION_INDICATOR_BYTE_SIZE);
+
         switch(concatination_byte[0])
         {
             case '0':
@@ -137,8 +138,7 @@ class ecpri_Frame : public Basic_Frame
         Print_rtc_id();
         Print_seq_id();
         Print_src();
-        Print_type();
-        cout << "*******************************************************************************************************************************************************" << endl;
+        Print_type();    
     }
     void Print_protocol_version()
     {
