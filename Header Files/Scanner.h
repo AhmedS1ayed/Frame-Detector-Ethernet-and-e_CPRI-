@@ -14,7 +14,7 @@ class Scanner
 {
     private: 
     string inputFile;
-    vector<string> inputData;
+    
 
     public:
     Scanner(string inputFile)
@@ -26,6 +26,7 @@ class Scanner
     {
         string line;
         ifstream file;
+        vector<string> inputData;
         file.open(this->inputFile);
         if(!file.is_open())
         {
