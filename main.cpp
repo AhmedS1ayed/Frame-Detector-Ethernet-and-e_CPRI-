@@ -1,27 +1,13 @@
 #include"./Header Files/Basic_Frame.h"
 #include"./Header Files/ecpri_Frame.h"
 #include"./Header Files/Ethernet_Frame.h"
-#include"./Configration Files/Ecpri_Frame_config.h"
-
-// Basic_Frame* Frame_type_object(Basic_Frame* input)
-// {
-//         if(input->Frame_type() == "e-CPRI")
-//         {
-//             ecpri_Frame* new_frame = new ecpri_Frame(input->get_Frame(),input->get_source(),input->get_destination(),input->get_type(),input->get_crc());
-//             return new_frame;
-//         }
-//         else if(input->Frame_type() == "Ethernet")
-//         {
-//             return input;
-//         }
-// }
+#include "./Header Files/Analyser.h"
 
 int main()
 {
-    Basic_Frame* a = new ecpri_Frame("FB555555555555D50000000000C1ECCD655507D9AEFE1002001480680180900000400101D10000100000FFFE7E040000000000000000000000000000000000000000000099AC762B");
-    a->Print();
-    //a = Frame_type_object(a);
-    //a->Print();
+    Analyser analyser;
+    analyser.analyse("input_packets");
+
     return 0;
 }
 

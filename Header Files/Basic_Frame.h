@@ -1,10 +1,12 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include "../Configration Files/Basic_Frame_config.h"
 using namespace std;
 
 class Basic_Frame
 {
+
     string Frame;
     string source;
     string dest;
@@ -15,12 +17,11 @@ class Basic_Frame
     //Default Constructor
     Basic_Frame(){};
     //Full Frame Constructor
-    Basic_Frame(string input)
+    Basic_Frame(string input) : Frame(input)
     {
-        Frame = input;
         process_Frame();
     }
-    //pre-determined frame constructor
+    //pre-determined frame constructor used for optimization in Ecpri_Frame
     Basic_Frame(string fr ,string s , string d , string t ,string cr) : Frame(fr),source(s) , dest(d) , type(t) , crc(cr)
     {
 
@@ -80,22 +81,32 @@ class Basic_Frame
     }
     string process_source()
     {
-        return "00";
+
+        string temp;
+        temp = Frame.substr(SOURCE_ADDRESS_INDEX,ETHERNET_SOURCE_ADDRESS_SIZE);   
+        return temp;
     }
     string process_dest()
     {
-        return "00";
+        string temp;
+        temp = Frame.substr(DESTINATION_ADDRESS_INDEX,ETHERNET_DESTINATION_ADDRESS_SIZE);
+        return temp;
     }
     string process_type()
     {
-        return "00";
+        string temp;
+        temp = Frame.substr(ETHERNET_TYPE_INDEX,ETHERNET_TYPE_SIZE);   
+        return temp;
     }
     string process_crc()
     {
-        return "00";
+        string temp;
+        temp = Frame.substr(Frame.size()-ETHERNET_CRC_SiZE,ETHERNET_CRC_SiZE);   
+        return temp;
     }
+
 //----------------------------------------------------
-    //Printers :
+    //Printers 
     virtual void Print()
     {
         Print_crc();
@@ -120,7 +131,8 @@ class Basic_Frame
     {
         cout<<"CRC: "<<crc + "\n";
     }
-// Frame_type returns a pointer frame with its type
+
+// Frame_type
     string Frame_type()
     {
         if(type=="AEFE")

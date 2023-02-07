@@ -137,7 +137,7 @@ class ecpri_Frame : public Basic_Frame
         Print_rtc_id();
         Print_seq_id();
         Print_src();
-        Print_type();
+        Print_type();    
     }
     void Print_protocol_version()
     {
