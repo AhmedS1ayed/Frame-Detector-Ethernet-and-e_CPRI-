@@ -18,19 +18,26 @@ class Basic_Frame
     //Default Constructor
     Basic_Frame(){};
     //Full Frame Constructor
-    Basic_Frame(string input)
+    Basic_Frame(string input) : Frame(input)
     {
-        this->Frame = input;
         process_Frame();
     }
-    //pre-determined frame constructor
-    Basic_Frame(string s , string d , string t ,string cr) : source(s) , dest(d) , type(t) , crc(cr)
+    //pre-determined frame constructor used for optimization in Ecpri_Frame
+    Basic_Frame(string fr ,string s , string d , string t ,string cr) : Frame(fr),source(s) , dest(d) , type(t) , crc(cr)
     {
 
     }
 
 //----------------------------------------------------
     // Setters and Getters :
+    void set_Frame(string input)
+    {
+        Frame=input;
+    }
+    string get_Frame()
+    {
+        return Frame;
+    }
     void set_source(string input)
     {
         source=input;
@@ -125,20 +132,8 @@ class Basic_Frame
     {
         cout<<"CRC: "<<crc + "\n";
     }
-// Frame_type returns a pointer frame with its type
-    Basic_Frame* Frame_type_object()
-    {
-        // if(Frame_type() == "e-CPRI")
-        // {
-        //     Basic_Frame* output = new ecpri_Frame(source,dest,type,crc);
-        //     return output;
-        // }
-        // else if(Frame_type() == "Ethernet")
-        // {
-        //     Basic_Frame* output = new Ethernet_Frame(source,dest,type,crc);
-        //     return output;
-        // }
-    }
+
+// Frame_type
     string Frame_type()
     {
         if(type=="AEFE")
