@@ -1,7 +1,6 @@
 #ifndef BF_CONFIG_H
 #define BF_CONFIG_H
 
-#define BF_VERSION 1.0
 
 /*
     all defines refer to the index of the packet
@@ -14,7 +13,12 @@
 #define ETHERNET_TYPE_SIZE 4
 #define ETHERNET_PAYLOAD_INDEX 44
 #define ETHERNET_CRC_SiZE 8
-//FIXME: confert them to array indices
+//FIXME: convert them to array indices
+#define ECPRI_BF_VERSION_INDEX 44
+#define ECPRI_BF_VERSION_SIZE 1
+#define ECPRI_CONCATENATION_INDICATOR_INDEX 45
+#define ECPRI_CONCATENATION_INDICATOR_SIZE 1
+
 #define ECPRI_PAYLOAD_SIZE_INDEX 0
 #define ECPRI_MESSAGE_TYPE_INDEX 2
 #define ECPRI_CONCATENATION_INDICATOR_INDEX 3
