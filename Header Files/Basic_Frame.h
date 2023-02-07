@@ -82,8 +82,6 @@ class Basic_Frame
     }
     string process_dest()
     {
-        cout << Frame[16] << endl;
-        cout << Frame << endl;
         string temp;
         temp = Frame.substr(DESTINATION_ADDRESS_INDEX,ETHERNET_DESTINATION_ADDRESS_SIZE);
         return temp;

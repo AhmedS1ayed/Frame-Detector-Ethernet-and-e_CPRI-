@@ -30,7 +30,7 @@ class Scanner
         if(!file.is_open())
         {
             cout<<"Error opening file"<<endl;
-          //  exit(1);
+            exit(1);
         }
         while(getline(file,line))
         {
