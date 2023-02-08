@@ -32,23 +32,23 @@ class Analyser
         //loop through the input data and process each packet
         for (size_t i = 0; i < inputData.size(); i++)
         {
-            bool verify = verifyFrame(inputData[i]);
+            packet = inputData[i];
+            outputData += "Packet #" + to_string(i) + ": \n" + packet + "\n";
+            
+            bool verify = verifyFrame(packet);
             if( verify == false)
             {
                 continue;
             }
-
-            packet = inputData[i];
             BasicFrame* frame = new BasicFrame(packet);
             //call thq process_Frame function to process the packet
             frame->processFrame();
             //check the frame type if it is e-CPRI or Ethernet and do ecpri processing
             frame = checkFrameType(frame);
             //add the output to the outputData string
-            outputData += "Packet #" + to_string(i) + ": \n" + packet + "\n";
             outputData += frame->print() + "\n";
             delete(frame);
-            outputData += "*******************************************************************************************************************************************************\n";
+            outputData += astricLine();
         }
             cout << outputData << endl;
             emitter.emit(outputData);
@@ -67,6 +67,7 @@ class Analyser
         {
             return input;
         }
+        return nullptr;
     }
 
 //-----------------------------------------------------------------------------
@@ -79,7 +80,8 @@ class Analyser
         
         if(verify == false)
         {
-            outputData += "Length of the frame is not Acceptable \n";
+            outputData += "Length of the frame is not Acceptable \n \n";
+            outputData += astricLine();
             return false;
         }
 
@@ -87,21 +89,20 @@ class Analyser
 
         if(verify == false)
         {
-            outputData += "invalid characters in the frame";
+            outputData += "invalid characters in the frame \n \n";
+            outputData += astricLine();
             return false;
         }
         return true;
     }
     bool checkLength(int length)
     {
-        cout<<"length : "<<length <<endl;
-        if(MINIMUM_FRAME_SIZE <= length <= MAXIMUM_FRAME_SIZE)
+        if(MINIMUM_FRAME_SIZE <= length && length <= MAXIMUM_FRAME_SIZE)
         {
             return true;
         }
         else
         {
-            cout <<"Checklength : false" <<endl;
             return false;
         }
     }
@@ -120,7 +121,7 @@ class Analyser
     bool characterChecker(char input)
     {
         // it Check if it is not out of range
-        if( ('0' <= (int)(input) <='9') || ('A' <= (int)(input) <= 'F'))
+        if( ('0' <= input) && (input <='9') || ('A' <= input) && (input <= 'F'))
         {
             return true;
         }
@@ -128,6 +129,10 @@ class Analyser
         {
             return false;
         }
+    }
+    string astricLine()
+    {
+        return "*******************************************************************************************************************************************************\n";
     }
     ~Analyser()
     {
