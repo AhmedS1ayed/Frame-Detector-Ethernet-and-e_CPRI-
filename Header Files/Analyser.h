@@ -34,7 +34,7 @@ class Analyser
             packet = inputData[i];
             BasicFrame* frame = new BasicFrame(packet);
             //call thq process_Frame function to process the packet
-            (*frame).processFrame();
+            frame->processFrame();
             //check the frame type if it is e-CPRI or Ethernet and do ecpri processing
             frame = checkFrameType(frame);
             
@@ -49,7 +49,7 @@ class Analyser
             //emitter.emit("Packet #"+to_string(i)+": ");
            // cout << frame->Print() << endl;
             //emitter.emit(packet);
-            outputData += frame->Print() + "\n";
+            outputData += frame->print() + "\n";
             //this->outputData[i] = frame->Print();
             //emit the output data
             //emitter.emit(outputData[i]);
@@ -60,7 +60,6 @@ class Analyser
         }
             cout << outputData << endl;
             emitter.emit(outputData);
-
     }
 
     BasicFrame* checkFrameType(BasicFrame* input)
@@ -69,7 +68,7 @@ class Analyser
         if(temp == "e-CPRI")
         {
             EcpriFrame* newframe = new EcpriFrame(input->getFrame(),input->getSource(),input->getDestination(),input->getType(),input->getCRC());
-            (*newframe).processFrameFull();
+            newframe->processFrameFull();
             return newframe;
         }
         else if(temp == "Ethernet")
@@ -80,6 +79,10 @@ class Analyser
         {
             return nullptr;
         }
+    }
+    ~Analyser()
+    {
+
     }
 
 

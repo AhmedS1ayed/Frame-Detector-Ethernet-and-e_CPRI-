@@ -13,12 +13,12 @@ class EcpriFrame : public BasicFrame
     string seqId;
 
     public:
-    //Default Constructor
+    //Default Constructor : it is used generally if you have a frame and you know it is Ecpri
     EcpriFrame(string frame)
     {
         setFrame(frame);
     };
-    //Full Frame Constructor
+    //Full Frame Constructor : it is optimized constructor used to copy pre-determined arguement
     EcpriFrame(string fr,string s , string d , string t , string cr ) : BasicFrame(fr,s , d , t ,cr)
     {
         processFrame();
@@ -33,6 +33,7 @@ class EcpriFrame : public BasicFrame
         BasicFrame::processFrame();
         processFrame();
     }
+    //This Process just the remaining part of the frame:
     void processFrame()
     {
         processProtocolVersion();
@@ -53,7 +54,7 @@ class EcpriFrame : public BasicFrame
         concatinationByte = getFrame().substr(CONCATENATION_INDICATOR_BYTE_INDEX,CONCATENATION_INDICATOR_BYTE_SIZE);
         // convert hex to decimal 
         int decimalConcatinationByte = stoi(concatinationByte, 0, 16);
-        // check it it even or odd
+        // check if it is even or odd
         if(decimalConcatinationByte % 2 == 0)
         {
             concatinationBit = "0";
@@ -82,43 +83,43 @@ class EcpriFrame : public BasicFrame
     }
 //----------------------------------------------------
     //Printers :
-    // FIXME: Refactor this functions
-    virtual string Print()
+    // FIXME: Refactor this functions // ====> Fixed 
+    virtual string print()
     {
         string temp;
-        temp += Print_crc();
-        temp += Print_concatination_indicator();
-        temp += Print_dst();
-        temp += Print_message_type();
-        temp += Print_payload_size();
-        temp += Print_protocol_version();
-        temp += Print_rtc_id();
-        temp += Print_seq_id();
-        temp += Print_src();
-        temp += Print_type();    
+        temp += printCrc();
+        temp += printConcatinationIndicator();
+        temp += printDest();
+        temp += printMessageType();
+        temp += printPayloadSize();
+        temp += printProtocolVersion();
+        temp += printRtcId();
+        temp += printSeqID();
+        temp += printSource();
+        temp += printType();   
         return temp;
     }
-    string Print_protocol_version()
+    string printProtocolVersion()
     {
         return "Protocol Version: " + protocolVersion + "\n";
     }
-    string Print_concatination_indicator()
+    string printConcatinationIndicator()
     {
         return "Concatenation Indicator: " + concatinationBit + "\n";
     }
-    string Print_message_type()
+    string printMessageType()
     {
         return "Message Type: " + messageType + "\n";
     }
-    string Print_payload_size()
+    string printPayloadSize()
     {
         return "Payload Size: " + payloadSize + "\n";
     }
-    string Print_rtc_id()
+    string printRtcId()
     {
         return "RTC ID: " + rtcId + "\n";
     }
-    string Print_seq_id()
+    string printSeqID()
     {
         return "Sequence ID: " + seqId + "\n";
     }

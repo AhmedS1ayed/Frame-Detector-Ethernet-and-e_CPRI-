@@ -116,32 +116,30 @@ class BasicFrame
 
 //----------------------------------------------------
     //Printers 
-    // FIXME: Refactor this functions
-    virtual string Print()
+    // FIXME: Refactor this functions // ====> Fixed 
+    virtual string print()
     {
         string temp="";
-        temp += Print_crc();
-        temp += Print_dst();
-        temp += Print_src();
-        temp += Print_type();
+        temp += printCrc();
+        temp += printDest();
+        temp += printSource();
+        temp += printType();
         return temp;
         }
-    string Print_src()
+    string printSource()
     {
         return "Source Address: " + source + "\n";
     }
-    string Print_dst()
+    string printDest()
     {
         return "Destination Address: " + dest + "\n";
     }
-    string Print_type()
+    string printType()
     {
         return "Type: " + type + "\n";
     }
-    string Print_crc()
+    string printCrc()
     {
         return "CRC: " + crc + "\n";
     }
-
-
 };
