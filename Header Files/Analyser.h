@@ -68,6 +68,7 @@ class Analyser
         if(temp == "e-CPRI")
         {
             EcpriFrame* newframe = new EcpriFrame(input->getFrame(),input->getSource(),input->getDestination(),input->getType(),input->getCRC());
+            delete(input);
             newframe->processFrameFull();
             return newframe;
         }
