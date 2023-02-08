@@ -83,7 +83,6 @@ class EcpriFrame : public BasicFrame
     }
 //----------------------------------------------------
     //Printers :
-    // FIXME: Refactor this functions // ====> Fixed 
     virtual string print()
     {
         string temp;

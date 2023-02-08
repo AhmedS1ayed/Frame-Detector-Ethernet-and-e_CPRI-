@@ -115,8 +115,7 @@ class BasicFrame
 
 
 //----------------------------------------------------
-    //Printers 
-    // FIXME: Refactor this functions // ====> Fixed 
+    //Printers :
     virtual string print()
     {
         string temp="";

@@ -40,22 +40,10 @@ class Analyser
             
             if(frame == nullptr) 
                 return;
-
-
-            // FIXME: Refactor this code to be more readable
-            //print the frame
-           // cout <<  "Packet #" << i << ": " << packet << endl;
+            //add the output to the outputData string
             outputData += "Packet #" + to_string(i) + ": \n" + packet + "\n";
-            //emitter.emit("Packet #"+to_string(i)+": ");
-           // cout << frame->Print() << endl;
-            //emitter.emit(packet);
             outputData += frame->print() + "\n";
-            //this->outputData[i] = frame->Print();
-            //emit the output data
-            //emitter.emit(outputData[i]);
             delete(frame);
-            //cout << "*******************************************************************************************************************************************************" << endl;
-            //emitter.emit("*******************************************************************************************************************************************************");
             outputData += "*******************************************************************************************************************************************************\n";
         }
             cout << outputData << endl;
