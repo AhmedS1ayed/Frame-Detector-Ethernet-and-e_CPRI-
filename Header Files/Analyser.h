@@ -95,7 +95,7 @@ class Analyser
     bool checkLength(int length)
     {
         cout<<"length : "<<length <<endl;
-        if(MINIMUM_FRAME_SIZE <= length <= MAXIMUM_FRAME_SIZE)
+        if(  length >= MINIMUM_FRAME_SIZE && length <= MAXIMUM_FRAME_SIZE )
         {
             return true;
         }
