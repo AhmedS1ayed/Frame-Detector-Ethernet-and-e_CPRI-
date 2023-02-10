@@ -8,7 +8,7 @@ class BasicFrame
 {
 
     private:
-    string Frame;
+    string frame;
     string source;
     string dest;
     string type;
@@ -18,11 +18,11 @@ class BasicFrame
     //Default Constructor
     BasicFrame(){};
     //Full Frame Constructor
-    BasicFrame(string input) : Frame(input)
+    BasicFrame(string input) : frame(input)
     {
     }
     //pre-determined frame constructor used for optimization in Ecpri_Frame
-    BasicFrame(string fr ,string s , string d , string t ,string cr) : Frame(fr),source(s) , dest(d) , type(t) , crc(cr)
+    BasicFrame(string frame ,string source , string dest , string type ,string crc) : frame(frame),source(source) , dest(dest) , type(type) , crc(crc)
     {
     }
 
@@ -30,11 +30,11 @@ class BasicFrame
     // Setters and Getters :
     void setFrame(string input)
     {
-        Frame=input;
+        frame=input;
     }
     string getFrame()
     {
-        return Frame;
+        return frame;
     }
     void setSource(string input)
     {
@@ -82,25 +82,25 @@ class BasicFrame
     {
 
         string temp;
-        temp = Frame.substr(SOURCE_ADDRESS_INDEX,ETHERNET_SOURCE_ADDRESS_SIZE);   
+        temp = frame.substr(SOURCE_ADDRESS_INDEX,ETHERNET_SOURCE_ADDRESS_SIZE);   
         return temp;
     }
     string processDest()
     {
         string temp;
-        temp = Frame.substr(DESTINATION_ADDRESS_INDEX,ETHERNET_DESTINATION_ADDRESS_SIZE);
+        temp = frame.substr(DESTINATION_ADDRESS_INDEX,ETHERNET_DESTINATION_ADDRESS_SIZE);
         return temp;
     }
     string processType()
     {
         string temp;
-        temp = Frame.substr(ETHERNET_TYPE_INDEX,ETHERNET_TYPE_SIZE);   
+        temp = frame.substr(ETHERNET_TYPE_INDEX,ETHERNET_TYPE_SIZE);   
         return temp;
     }
     string processCRC()
     {
         string temp;
-        temp = Frame.substr(Frame.size()-ETHERNET_CRC_SiZE,ETHERNET_CRC_SiZE);   
+        temp = frame.substr(frame.size()-ETHERNET_CRC_SiZE,ETHERNET_CRC_SiZE);   
         return temp;
     }
 
