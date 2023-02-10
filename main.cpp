@@ -1,6 +1,4 @@
-#include"./Header Files/BasicFrame.h"
-#include"./Header Files/EcpriFrame.h"
-#include "./Header Files/Analyser.h"
+#include "./header_files/Analyser.h"
 
 int main()
 {

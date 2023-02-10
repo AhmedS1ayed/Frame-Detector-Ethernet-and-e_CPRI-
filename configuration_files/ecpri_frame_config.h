@@ -1,6 +1,9 @@
 #ifndef ECF_CONFIG_H
 #define ECF_CONFIG_H
 
+/*
+    all defines refer to the index of the packet
+*/
 #define PROTOCOL_REVISION_INDEX 44
 #define PROTOCOL_REVISION_SIZE 1
 #define CONCATENATION_INDICATOR_BYTE_INDEX 45

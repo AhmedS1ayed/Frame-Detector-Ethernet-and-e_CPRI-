@@ -7,8 +7,9 @@
 #include <vector>
 using namespace std;
 
-
-// FIXME: may the we add a destructor to this class and close the file in it 
+/*
+    Emitter class to write the output data to a file
+*/
 class Emitter{
 
     private:

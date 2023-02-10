@@ -1,9 +1,12 @@
 #pragma once
 #include<iostream>
 #include<string>
-#include "../Configration Files/Basic_Frame_config.h"
+#include "../configuration_files/basic_frame_config.h"
 using namespace std;
 
+/*
+    BasicFrame class to process the basic frame and extract the source , destination , type and crc
+*/
 class BasicFrame
 {
 
@@ -22,7 +25,8 @@ class BasicFrame
     {
     }
     //pre-determined frame constructor used for optimization in Ecpri_Frame
-    BasicFrame(string frame ,string source , string dest , string type ,string crc) : frame(frame),source(source) , dest(dest) , type(type) , crc(crc)
+    BasicFrame(string frame ,string source , string dest , string type ,string crc) 
+                : frame(frame),source(source) , dest(dest) , type(type) , crc(crc)
     {
     }
 

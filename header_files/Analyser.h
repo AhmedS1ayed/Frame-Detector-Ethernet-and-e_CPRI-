@@ -6,19 +6,21 @@
 #include "Scanner.h"
 #include "BasicFrame.h"
 #include "Emitter.h"
+#include "EcpriFrame.h"
 using namespace std;
 
-
+/*
+    Analyser class to analyse the input data and process it and do some Checks
+*/
 class Analyser
 {
     private:
     vector<string> inputData;
     string outputData;
     string packet;
-    Scanner scanner;
+    Scanner scanner; 
     Emitter emitter;
 
-    //TODO: add destructor !!
     public:
     Analyser()
     {
@@ -62,13 +64,15 @@ class Analyser
         }
             cout << outputData << endl;
             emitter.emit(outputData);
+            
     }
     BasicFrame* checkFrameType(BasicFrame* input)
     {
         string temp = input->getFrameType();
         if(temp == "e-CPRI")
         {
-            EcpriFrame* newframe = new EcpriFrame(input->getFrame(),input->getSource(),input->getDestination(),input->getType(),input->getCRC());
+            EcpriFrame* newframe = new EcpriFrame(input->getFrame(),input->getSource(),
+                                                    input->getDestination(),input->getType(),input->getCRC());
             
             // clean the allocated resources
             delete(input);
@@ -116,8 +120,6 @@ class Analyser
     }
     bool checkLength(int length)
     {
-        if(MINIMUM_FRAME_SIZE <= length && length <= MAXIMUM_FRAME_SIZE)
-        cout<<"length : "<<length <<endl;
         if(  length >= MINIMUM_FRAME_SIZE && length <= MAXIMUM_FRAME_SIZE )
         {
             return true;
@@ -155,6 +157,10 @@ class Analyser
     // Test Separator in print :
     string astricLine()
     {
-        return "*******************************************************************************************************************************************************\n";
+        const char* astrics = "***********************************************"
+                            "************************************************"
+                            "************************************************\n";
+        return astrics;
     }
+
 };

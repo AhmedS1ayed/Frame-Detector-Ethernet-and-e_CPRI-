@@ -1,6 +1,11 @@
 #pragma once
-#include "../Configration Files/Ecpri_Frame_config.h"
+#include "../configuration_files/ecpri_frame_config.h"
 #include"BasicFrame.h"
+
+/*
+    EcpriFrame class to process the ecpri frame and extract the protocol version , concatination byte , 
+                                                concatination bit , message type , payload size , rtc id and sequence id
+*/
 class EcpriFrame : public BasicFrame
 {
     private:
@@ -19,7 +24,8 @@ class EcpriFrame : public BasicFrame
         setFrame(frame);
     };
     //Full Frame Constructor : it is optimized constructor used to copy pre-determined arguement
-    EcpriFrame(string frame , string source , string dest , string type , string crc ) : BasicFrame(frame , source , dest , type , crc)
+    EcpriFrame(string frame , string source , string dest , string type , string crc ) 
+                : BasicFrame(frame , source , dest , type , crc)
     {
     };
 
