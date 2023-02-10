@@ -13,26 +13,26 @@ class EcpriFrame : public BasicFrame
     string seqId;
 
     public:
-    //Default Constructor : it is used generally if you have a frame and you know it is Ecpri
+    //Default Constructor : this is Special Constructor made in case you want to instantiate Ecpriframe immediatly frome frame
     EcpriFrame(string frame)
     {
         setFrame(frame);
     };
     //Full Frame Constructor : it is optimized constructor used to copy pre-determined arguement
-    EcpriFrame(string fr,string s , string d , string t , string cr ) : BasicFrame(fr,s , d , t ,cr)
+    EcpriFrame(string frame , string source , string dest , string type , string crc ) : BasicFrame(frame , source , dest , type , crc)
     {
-        processFrame();
     };
-//----------------------------------------------------
-    // Setters and Getters :
 
 //----------------------------------------------------
     //Processing The Frame :
+    
+    //This is Special Constructor made in case you want to instantiate Ecpriframe immediatly frome frame
     void processFrameFull()
     {
         BasicFrame::processFrame();
         processFrame();
     }
+    
     //This Process just the remaining part of the frame:
     void processFrame()
     {

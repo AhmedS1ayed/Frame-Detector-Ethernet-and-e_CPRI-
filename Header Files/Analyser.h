@@ -35,19 +35,29 @@ class Analyser
             packet = inputData[i];
             outputData += "Packet #" + to_string(i) + ": \n" + packet + "\n";
             
+            //Verifying the packet
             bool verify = verifyFrame(packet);
             if( verify == false)
             {
                 continue;
             }
+
+            //instantiate frame
             BasicFrame* frame = new BasicFrame(packet);
-            //call thq process_Frame function to process the packet
+            
+            //call the process_Frame function to process the packet
             frame->processFrame();
+            
             //check the frame type if it is e-CPRI or Ethernet and do ecpri processing
             frame = checkFrameType(frame);
+            
             //add the output to the outputData string
             outputData += frame->print() + "\n";
+            
+            //clean allocated resources
             delete(frame);
+            
+            //add line at the end of the test case
             outputData += astricLine();
         }
             cout << outputData << endl;
@@ -59,12 +69,18 @@ class Analyser
         if(temp == "e-CPRI")
         {
             EcpriFrame* newframe = new EcpriFrame(input->getFrame(),input->getSource(),input->getDestination(),input->getType(),input->getCRC());
+            
+            // clean the allocated resources
             delete(input);
-            newframe->processFrameFull();
+            
+            newframe->processFrame();
+
+            //return e-CPRI frame object
             return newframe;
         }
         else if(temp == "Ethernet")
         {
+            //return Ethernate frame object
             return input;
         }
         return nullptr;
@@ -75,6 +91,8 @@ class Analyser
     bool verifyFrame(string frame)
     {
         bool verify = true;
+
+        //verify frame Length :
         int frameLength = frame.length();
         verify = checkLength(frameLength);
         
@@ -85,6 +103,7 @@ class Analyser
             return false;
         }
 
+        //verify the format:
         verify = checkFormat(frame);
 
         if(verify == false)
@@ -130,12 +149,10 @@ class Analyser
             return false;
         }
     }
+
+    // Test Separator in print :
     string astricLine()
     {
         return "*******************************************************************************************************************************************************\n";
-    }
-    ~Analyser()
-    {
-
     }
 };
