@@ -5,7 +5,7 @@
 
 ##### N : is the number of BasicFrame or EthernetFrame. <br />
 ##### M : is the number of not instantiated EcpriFrame. <br />
-##### (N-M) = No. of Ecpri Frame Packets in the input. <br /> 
+##### (N-M) : is the number of Ecpri Frame Packets in the input. <br /> 
 ##### since we will instantiate BasicFrame no matter what and process it and when we find out that it is Ecpri not just Ethernet then we copy the processed values to new instance of EcpriFrame and change the pointer instance of it taking advantage of virtual pointer. <br /> 
 
 
